@@ -1,0 +1,156 @@
+[04/02 17:24:39.890550][debug][20087][Context.cpp:30] Context creating, work_dir=/home/medpal/MedPalRobotV2/python
+[04/02 17:24:39.890618][debug][20087][Context.cpp:49] Config file version=1.1
+[04/02 17:24:39.892157][debug][20087][FrameBufferManager.cpp:23] Max global frame buffer size updated! size=2048.000MB
+[04/02 17:24:39.892172][info][20087][Context.cpp:68] Context created with config: default config!
+[04/02 17:24:39.892182][info][20087][Context.cpp:73] Work directory=/home/medpal/MedPalRobotV2/python, SDK version=v1.10.16-20241021-5113dad
+[04/02 17:24:39.892190][debug][20087][DeviceManager.cpp:30] DeviceManager init ...
+[04/02 17:24:39.892192][info][20087][LinuxPal.cpp:32] createObPal: create LinuxPal!
+[04/02 17:24:39.892784][debug][20087][DeviceManager.cpp:34] Enable USB Device Enumerator ...
+[04/02 17:24:39.966502][debug][20087][EnumeratorLibusb.cpp:324] queryDevicesInfo done!
+[04/02 17:24:39.966546][debug][20087][UsbDeviceEnumerator.cpp:163] Current usb device port list:
+[04/02 17:24:39.966555][debug][20087][UsbDeviceEnumerator.cpp:166]  - 1-1.2-5.0 | ORBBEC Depth Sensor
+[04/02 17:24:39.966557][debug][20087][UsbDeviceEnumerator.cpp:166]  - 1-1.2-5.1 | ORBBEC Audio Device
+[04/02 17:24:39.966558][debug][20087][UsbDeviceEnumerator.cpp:166]  - 1-1.1-4.0 | Astra Pro HD Camera
+[04/02 17:24:39.966590][warning][20087][OpenNIDeviceInfo.cpp:186] New openni device matched.
+[04/02 17:24:39.966666][info][20087][LinuxPal.cpp:166] Create PollingDeviceWatcher!
+[04/02 17:24:39.966681][debug][20087][UsbDeviceEnumerator.cpp:71] Found 1 device(s):
+[04/02 17:24:39.966685][debug][20087][UsbDeviceEnumerator.cpp:74]   - Name: Astra Pro, PID: 0x0403, SN/ID: , connection: USB2.0
+[04/02 17:24:39.966690][info][20087][DeviceManager.cpp:15] Current found device(s): (1)
+[04/02 17:24:39.966694][info][20087][DeviceManager.cpp:24] 	- Name: Astra Pro, PID: 0x0403, SN/ID: , Connection: USB2.0
+[04/02 17:24:39.966696][debug][20087][DeviceManager.cpp:52] DeviceManager construct done!
+[04/02 17:24:39.966699][info][20087][Pipeline.cpp:15] Try to create pipeline with default device.
+[04/02 17:24:39.966702][debug][20087][DeviceManager.cpp:109] DeviceManager  createDevice...
+[04/02 17:24:39.966704][debug][20087][UsbDeviceEnumerator.cpp:291] UsbDeviceEnumerator createDevice...
+[04/02 17:24:39.972632][info][20087][OpenNIHostProtocol.cpp:567] Hardware versions: FW=5.8.22 (14), HW=0, Chip=0, Sensor=0, SYS=12
+[04/02 17:24:39.973346][error][20087][OpenNIHostProtocol.cpp:584] Get usb core type failed!
+[04/02 17:24:39.973351][debug][20087][OpenNIHostProtocol.cpp:665] Requesting KeepAlive...
+[04/02 17:24:39.974099][debug][20087][OpenNIHostProtocol.cpp:672] Got KeepAlive Reply.
+[04/02 17:24:39.975903][debug][20087][OpenNIHostProtocol.cpp:665] Requesting KeepAlive...
+[04/02 17:24:39.976470][debug][20087][OpenNIHostProtocol.cpp:672] Got KeepAlive Reply.
+[04/02 17:24:39.976473][debug][20087][OpenNIHostProtocol.cpp:690] Getting the fixed params...
+[04/02 17:24:39.978097][debug][20087][OpenNIHostProtocol.cpp:730] Reading sensor serial number...
+[04/02 17:24:39.978847][info][20087][OpenNISensorFirmware.cpp:1190] Sensor serial number:17122121427
+[04/02 17:24:39.980097][debug][20087][OpenNIHostProtocol.cpp:802] Reading sensor platform string...
+[04/02 17:24:39.980846][info][20087][OpenNISensorFirmware.cpp:1218] Firmware version RD108C-009
+[04/02 17:24:39.981592][info][20087][OpenNISensorFirmware.cpp:1224] Device frequency 100
+[04/02 17:24:39.981597][debug][20087][OpenNIHostProtocol.cpp:879] Update supported depth video modes from firmware
+[04/02 17:24:39.981602][debug][20087][OpenNIHostProtocol.cpp:915] Reading CMOS 0 supported presets...
+[04/02 17:24:40.003599][debug][20087][OpenNISensorFirmware.cpp:1236] OpenNI camera params read.
+[04/02 17:24:40.005348][debug][20087][OpenNISensorFirmware.cpp:2057] OpenNI camera params read end.
+[04/02 17:24:40.006093][error][20087][OpenNIHostProtocol.cpp:952] Support sub cmd error!
+[04/02 17:24:40.006100][warning][20087][OpenNISensorFirmware.cpp:153] OpenNI2 camera don't support Watchdog function!
+[04/02 17:24:40.006103][debug][20087][OpenNISensorIO.cpp:29] Opening endpoint 0x81 for depth...
+[04/02 17:24:40.006114][debug][20087][OpenNISensorIO.cpp:41] Depth endpoint(0x81) was successfully opened.
+[04/02 17:24:40.006117][debug][20087][OpenNISensorIO.cpp:48] Opening endpoint 0x82 for IR...
+[04/02 17:24:40.006118][debug][20087][OpenNISensorIO.cpp:54] IR endpoint(0x82) was successfully opened.
+[04/02 17:24:40.006120][debug][20087][OpenNISensorIO.cpp:60] Opening endpoint 0x84  for image...
+[04/02 17:24:40.006121][debug][20087][OpenNISensorIO.cpp:65] Image endpoint is not supported...
+[04/02 17:24:40.006123][debug][20087][OpenNISensorIO.cpp:75] Opening endpoint 0x83 for misc...
+[04/02 17:24:40.006124][debug][20087][OpenNISensorIO.cpp:80] Misc endpoint is not supported...
+[04/02 17:24:40.006125][debug][20087][OpenNISensorIO.cpp:87] Endpoints open end.
+[04/02 17:24:40.006140][debug][20087][VendorCommand.cpp:205] VendorCommand constructor 555606a523d0
+[04/02 17:24:40.006142][debug][20087][OpenNIDevice.cpp:194] init sensor map start!
+[04/02 17:24:40.006147][debug][20087][OpenNIDevice.cpp:208] init sensor map done!
+[04/02 17:24:40.006173][debug][20087][PropertyAccessor.cpp:50] get firmware data success! propertyId: 1000, dataLen: 164
+[04/02 17:24:40.006179][info][20087][AbstractDevice.cpp:125] 	- Firmware version: RD108C-009
+[04/02 17:24:40.006201][debug][20087][AbstractDevice.cpp:360] Not default config found!
+[04/02 17:24:40.006203][debug][20087][OpenNIDevice.cpp:248] Init depth process param start!
+[04/02 17:24:40.006211][debug][20087][OpenNIDevice.cpp:271] Device baseline: 7.5, zpd: 130, zpps: 0.11396666616201401
+[04/02 17:24:40.006213][debug][20087][OpenNIDevice.cpp:294] Init depth process param done!
+[04/02 17:24:40.006374][info][20087][OpenNIDevice.cpp:813] Init depth filter params.
+[04/02 17:24:40.006381][info][20087][OpenNIDevice.cpp:40] OpenNI device created! PID: 0x0403, SN: 17122121427
+[04/02 17:24:40.006384][debug][20087][UsbDeviceEnumerator.cpp:359] Device created successfully! Name: Astra Pro, PID: 0x0403, SN/ID: 
+[04/02 17:24:40.006388][info][20087][DeviceManager.cpp:150] Device created successfully! Name: Astra Pro, PID: 0x0403, SN/ID: 
+[04/02 17:24:40.006425][debug][20087][Pipeline.cpp:29] Pipeline init ...
+[04/02 17:24:40.006434][debug][20087][Pipeline.cpp:168] loadFrameQueueSizeConfig() config queue size: 10
+[04/02 17:24:40.006440][warning][20087][ObException.cpp:5] Current device does not support frame sync!
+[04/02 17:24:40.013668][warning][20087][Pipeline.cpp:45] Execute failure! A libobsensor_exception has occurred!
+	 - where:45#Pipeline
+	 - msg:Current device does not support frame sync!
+	 - type:N11libobsensor31unsupported_operation_exceptionE
+[04/02 17:24:40.013686][info][20087][Pipeline.cpp:47] Pipeline created with device: {name: Astra Pro, sn: 17122121427}, @0x555606B62C70
+[04/02 17:24:40.013717][debug][20087][FrameProcessor.cpp:90] FrameProcessor init with 5 blocks! @93827968150960
+[04/02 17:24:40.013725][debug][20087][FrameProcessingBlock.cpp:26] Block created with frame queue size: 10
+[04/02 17:24:40.013729][debug][20087][FrameProcessor.cpp:98]  - block: FrameUnpacker, status: enable
+[04/02 17:24:40.013732][debug][20087][FrameProcessingBlock.cpp:26] Block created with frame queue size: 10
+[04/02 17:24:40.013734][debug][20087][FrameProcessor.cpp:98]  - block: FrameSoftFilter, status: enable
+[04/02 17:24:40.015339][debug][20087][FrameProcessingBlock.cpp:26] Block created with frame queue size: 10
+[04/02 17:24:40.015355][debug][20087][FrameProcessor.cpp:98]  - block: Disparity2DepthConverter, status: enable
+[04/02 17:24:40.016785][debug][20087][FrameProcessingBlock.cpp:26] Block created with frame queue size: 10
+[04/02 17:24:40.016789][debug][20087][FrameProcessor.cpp:98]  - block: D2CFilter, status: disable
+[04/02 17:24:40.016793][debug][20087][FrameProcessingBlock.cpp:26] Block created with frame queue size: 10
+[04/02 17:24:40.016795][debug][20087][FrameProcessor.cpp:98]  - block: PostProcessFilter, status: disable
+[04/02 17:24:40.016996][info][20087][OpenNIDevice.cpp:384] Depth sensor has been created!
+[04/02 17:24:40.017024][debug][20087][OpenNIVideoSensor.cpp:863] Query stream profile! size= 8, sensorType=OB_SENSOR_DEPTH
+[04/02 17:24:40.017036][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 160, height: 120, fps: 30}
+[04/02 17:24:40.017039][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 320, height: 240, fps: 30}
+[04/02 17:24:40.017041][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 640, height: 480, fps: 30}
+[04/02 17:24:40.017043][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 1280, height: 1024, fps: 7}
+[04/02 17:24:40.017045][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 160, height: 120, fps: 30}
+[04/02 17:24:40.017047][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 320, height: 240, fps: 30}
+[04/02 17:24:40.017049][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 640, height: 480, fps: 30}
+[04/02 17:24:40.017051][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 1280, height: 1024, fps: 7}
+[04/02 17:24:40.017063][debug][20087][Pipeline.cpp:227] Pipeline start() start!
+[04/02 17:24:40.017065][info][20087][Pipeline.cpp:188] Check and set config start!
+[04/02 17:24:40.017070][debug][20087][OpenNIVideoSensor.cpp:863] Query stream profile! size= 8, sensorType=OB_SENSOR_DEPTH
+[04/02 17:24:40.017072][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 160, height: 120, fps: 30}
+[04/02 17:24:40.017074][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 320, height: 240, fps: 30}
+[04/02 17:24:40.017076][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 640, height: 480, fps: 30}
+[04/02 17:24:40.017078][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y11, width: 1280, height: 1024, fps: 7}
+[04/02 17:24:40.017080][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 160, height: 120, fps: 30}
+[04/02 17:24:40.017082][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 320, height: 240, fps: 30}
+[04/02 17:24:40.017083][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 640, height: 480, fps: 30}
+[04/02 17:24:40.017085][debug][20087][OpenNIVideoSensor.cpp:865]  - {type: OB_STREAM_DEPTH, format: OB_FORMAT_Y12, width: 1280, height: 1024, fps: 7}
+[04/02 17:24:40.017087][info][20087][Pipeline.cpp:223] Check and set config done!
+[04/02 17:24:40.017735][debug][20087][PropertyAccessor.cpp:28] get property value success! propertyId: 14, value: {intValue: 0, floatValue: 0}
+[04/02 17:24:40.018478][warning][20087][ObException.hpp:40] Request failed, device response with error, errorCode: 1, msg: 
+[04/02 17:24:40.021637][warning][20087][AbstractDevice.cpp:1272] Execute failure! A libobsensor_exception has occurred!
+	 - where:1272#switchD2CParams
+	 - msg:Request failed, device response with error, errorCode: 1, msg: 
+	 - type:N11libobsensor12io_exceptionE
+[04/02 17:24:40.021652][warning][20087][AbstractDevice.cpp:1272] set align hardware mode int failed!
+[04/02 17:24:40.021656][warning][20087][OpenNIDevice.cpp:852] current d2c param index out of range!
+[04/02 17:24:40.021667][debug][20087][FrameProcessingBlockManager.cpp:75]  FrameProcessingBlockManager started, 0 blocks contained!
+[04/02 17:24:40.021669][info][20087][Pipeline.cpp:288] Try to start streams!
+[04/02 17:24:40.021685][debug][20087][FrameMemoryPool.cpp:35] FrameMemoryPool created!
+[04/02 17:24:40.021691][debug][20087][FrameBufferManager.hpp:65] FrameBufferManager created! frame type:N11libobsensor10DepthFrameE, obj addr:0x555606b6eb80, frame obj total size:0.403MB
+[04/02 17:24:40.021693][debug][20087][FrameMemoryPool.cpp:60] DepthFrame bufferManager created!
+[04/02 17:24:40.021723][debug][20087][OpenNISensorStreams.cpp:79] Firmware stream Depth processor was replaced.
+[04/02 17:24:40.022659][debug][20087][FrameProcessor.cpp:144] Frame processor active blocks chain update: input ->FrameUnpacker -> FrameSoftFilter -> Disparity2DepthConverter -> output
+[04/02 17:24:40.022663][debug][20087][FrameProcessor.cpp:155] FrameProcessor started, 5 blocks contained!
+[04/02 17:24:40.022667][debug][20087][OpenNIVideoSensor.cpp:773] Creating USB Depth read thread... 
+[04/02 17:24:40.022668][debug][20087][OpenNIUSBLinux.cpp:112] Starting a USB read thread...
+[04/02 17:24:40.023245][debug][20087][OpenNISensorParams.cpp:110] set property DepthFormat(3)
+[04/02 17:24:40.023851][debug][20087][OpenNISensorParams.cpp:121] DepthFormat(3)was successfully set.
+[04/02 17:24:40.023854][debug][20087][OpenNISensorParams.cpp:110] set property DepthResolution(1)
+[04/02 17:24:40.025849][debug][20087][OpenNISensorParams.cpp:121] DepthResolution(1)was successfully set.
+[04/02 17:24:40.025856][debug][20087][OpenNISensorParams.cpp:110] set property DepthFPS(30)
+[04/02 17:24:40.026598][debug][20087][OpenNISensorParams.cpp:121] DepthFPS(30)was successfully set.
+[04/02 17:24:40.026601][debug][20087][OpenNISensorParams.cpp:110] set property DepthHoleFilter(1)
+[04/02 17:24:40.027348][debug][20087][OpenNISensorParams.cpp:121] DepthHoleFilter(1)was successfully set.
+[04/02 17:24:40.027351][debug][20087][OpenNISensorParams.cpp:110] set property Registration(0)
+[04/02 17:24:40.028098][debug][20087][OpenNISensorParams.cpp:121] Registration(0)was successfully set.
+[04/02 17:24:40.028101][debug][20087][OpenNISensorParams.cpp:110] set property DepthMirror(0)
+[04/02 17:24:40.028849][debug][20087][OpenNISensorParams.cpp:121] DepthMirror(0)was successfully set.
+[04/02 17:24:40.028853][debug][20087][OpenNISensorParams.cpp:110] set property Stream1Mode(2)
+[04/02 17:24:40.030474][debug][20087][OpenNISensorParams.cpp:121] Stream1Mode(2)was successfully set.
+[04/02 17:24:40.030477][debug][20087][OpenNISensorParams.cpp:110] set property DepthCropEnabled(0)
+[04/02 17:24:40.031223][debug][20087][OpenNISensorParams.cpp:121] DepthCropEnabled(0)was successfully set.
+[04/02 17:24:40.031226][debug][20087][OpenNISensorParams.cpp:110] set property FrameSync(0)
+[04/02 17:24:40.031973][debug][20087][OpenNISensorParams.cpp:121] FrameSync(0)was successfully set.
+[04/02 17:24:40.031982][debug][20087][OpenNIVideoSensor.cpp:546] Stream state changed to STREAM_STATE_STARTING. @OB_SENSOR_DEPTH
+[04/02 17:24:40.031985][debug][20087][Pipeline.cpp:299] Sensor stream started, sensorType=OB_SENSOR_DEPTH
+[04/02 17:24:40.031987][info][20087][Pipeline.cpp:301] Start streams done!
+[04/02 17:24:40.031993][info][20087][Pipeline.cpp:277] Pipeline start done!
+[04/02 17:24:40.129608][debug][20102][FrameBufferManager.cpp:35] New frame buffer allocated=0.403MB, total usage: allocated=0.403MB, max limit=2048.000MB
+[04/02 17:24:40.129636][debug][20102][OpenNIVideoSensor.cpp:722] Stream state changed to STREAM_STATE_STREAMING. @OB_SENSOR_DEPTH
+[04/02 17:24:40.129785][debug][20102][FrameProcessingBlock.cpp:59] FrameProcessingBlock@N11libobsensor13FrameUnpackerE process thread started!
+[04/02 17:24:40.129829][debug][20104][FrameBufferManager.hpp:65] FrameBufferManager created! frame type:N11libobsensor10DepthFrameE, obj addr:0x7fff00000b70, frame obj total size:0.586MB
+[04/02 17:24:40.129837][debug][20104][FrameMemoryPool.cpp:60] DepthFrame bufferManager created!
+[04/02 17:24:40.129847][debug][20104][FrameBufferManager.cpp:35] New frame buffer allocated=0.586MB, total usage: allocated=0.990MB, max limit=2048.000MB
+[04/02 17:24:40.130206][debug][20104][FrameProcessingBlock.cpp:59] FrameProcessingBlock@N11libobsensor15FrameSoftFilterE process thread started!
+[04/02 17:24:40.136122][debug][20105][FrameProcessingBlock.cpp:59] FrameProcessingBlock@N11libobsensor24Disparity2DepthConverterE process thread started!
+[04/02 17:24:40.136560][debug][20106][FrameBufferManager.hpp:65] FrameBufferManager created! frame type:N11libobsensor8FrameSetE, obj addr:0x7ffeec000b70, frame obj total size:0.000MB
+[04/02 17:24:40.136578][debug][20106][FrameMemoryPool.cpp:92] Frameset bufferManager created!
+[04/02 17:24:40.136584][debug][20106][FrameBufferManager.cpp:35] New frame buffer allocated=0.000MB, total usage: allocated=0.990MB, max limit=2048.000MB
+[04/02 17:24:40.136654][debug][20106][Pipeline.cpp:319] Frame received on pipeline! type=OB_FRAME_DEPTH

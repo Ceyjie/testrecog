@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>MedPal Robot V2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body { background:#08111f; color:#e2e8f0; font-family:'Segoe UI',system-ui,sans-serif; }
+.card { background:#0f1f35; border:1px solid #1e3a5f; border-radius:16px; padding:14px; }
+.btn { border-radius:12px; font-weight:700; color:#fff; cursor:pointer;
+       transition:transform .08s,filter .1s; user-select:none; border:none; }
+.btn:active { transform:scale(.92); filter:brightness(.85); }
+#cam { width:100%; border-radius:10px; background:#000; min-height:180px; object-fit:cover; }
+#chat-log { height:240px; overflow-y:auto; display:flex; flex-direction:column; gap:8px; padding:4px; }
+#chat-log::-webkit-scrollbar { width:3px; }
+#chat-log::-webkit-scrollbar-thumb { background:#1e3a5f; border-radius:4px; }
+.bu { background:#1d4ed8; border-radius:14px 14px 4px 14px; padding:7px 13px;
+      max-width:85%; align-self:flex-end; font-size:13px; }
+.ba { background:#1e3a5f; border-radius:14px 14px 14px 4px; padding:7px 13px;
+      max-width:85%; align-self:flex-start; font-size:13px; border:1px solid #2d5a8a; }
+.badge { padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; }
+.pill { padding:4px 10px; border-radius:20px; font-size:12px; cursor:pointer;
+        border:1px solid #1e3a5f; background:#0f1f35; }
+.pill:hover { background:#1e3a5f; }
+.pill.active { background:#1d4ed8; border-color:#3b82f6; }
+input[type=range] { accent-color:#3b82f6; width:100%; }
+input[type=text],textarea {
+  background:#06101e; border:1px solid #1e3a5f; border-radius:10px;
+  color:#e2e8f0; padding:9px 13px; font-size:14px; outline:none;
+  transition:border-color .2s; width:100%; }
+input[type=text]:focus,textarea:focus { border-color:#3b82f6; }
+.tbar { height:6px; border-radius:4px; background:#1e3a5f; }
+.tfill { height:6px; border-radius:4px; transition:width .5s,background .5s; }
+.tog { position:relative; width:34px; height:20px; display:inline-block; }
+.tog input { opacity:0; width:0; height:0; }
+.tog-sl { position:absolute; inset:0; background:#1e3a5f; border-radius:20px;
+          cursor:pointer; transition:.2s; }
+.tog-sl:before { content:''; position:absolute; left:3px; top:3px;
+                 width:14px; height:14px; background:#fff; border-radius:50%;
+                 transition:.2s; }
+.tog input:checked + .tog-sl { background:#1d4ed8; }
+.tog input:checked + .tog-sl:before { transform:translateX(14px); }
+</style>
+</head>
+<body class="p-3 pb-6">
+
+<!-- Header -->
+<div class="flex items-center justify-between mb-3">
+  <div class="flex items-center gap-3">
+    <div style="width:38px;height:38px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+                border-radius:50%;display:flex;align-items:center;justify-content:center;
+                font-weight:900;font-size:16px">M</div>
+    <div>
+      <div style="font-size:16px;font-weight:700;color:#fff">MedPal Robot V2</div>
+      <div style="font-size:11px;color:#4b7ab5">Pi5 · Astra Pro · C++ Vision</div>
+    </div>
+  </div>
+  <div class="flex gap-2 items-center">
+    <span id="coral-badge" class="badge"
+          style="background:#0f2940;color:#4b7ab5">NO CORAL</span>
+    <span id="temp-badge" class="badge"
+          style="background:#0f2940;color:#4b7ab5">--°C</span>
+    <span id="conn-badge" class="badge"
+          style="background:#3b0f0f;color:#f87171">OFFLINE</span>
+  </div>
+</div>
+
+<!-- Grid -->
+<div style="display:flex;flex-direction:column;gap:12px">
+
+  <!-- Camera -->
+  <div class="card">
+    <div class="flex justify-between items-center mb-2">
+      <span style="font-size:12px;color:#4b7ab5;font-weight:600">LIVE VIEW</span>
+      <div class="flex gap-2 items-center">
+        <span id="persons-badge" class="badge"
+              style="background:#0f2940;color:#60a5fa">0 persons</span>
+        <span id="dist-badge" class="badge"
+              style="background:#0f2940;color:#34d399">? dist</span>
+        <span id="action-badge" class="badge"
+              style="background:#0f2940;color:#94a3b8">IDLE</span>
+      </div>
+    </div>
+    <img id="cam" src="/stream" alt="Camera"
+         onerror="this.style.minHeight='160px'">
+    <div class="tbar mt-2"><div id="tfill" class="tfill" style="width:0%;background:#22c55e"></div></div>
+  </div>
+
+  <!-- Target person -->
+  <div class="card">
+    <div style="font-size:12px;color:#4b7ab5;font-weight:600;margin-bottom:8px">
+      TARGET PERSON
+    </div>
+    <div style="font-size:12px;color:#64748b;margin-bottom:8px">
+      Robot will only follow the selected person. Register new persons below.
+    </div>
+    <div id="person-pills" class="flex flex-wrap gap-2 mb-3">
+      <span class="pill active" onclick="setTarget('anyone')" data-name="anyone">
+        Anyone
+      </span>
+      {% for p in persons %}
+      <span class="pill" onclick="setTarget('{{ p }}')" data-name="{{ p }}">
+        {{ p }}
+      </span>
+      {% endfor %}
+    </div>
+    <div style="font-size:11px;color:#64748b">
+      Current target: <b id="target-label" style="color:#60a5fa">Anyone</b>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="card">
+    <div style="font-size:12px;color:#4b7ab5;font-weight:600;margin-bottom:10px">
+      MANUAL CONTROL
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:260px;margin:0 auto">
+      <div></div>
+      <button class="btn" style="background:#1d4ed8;padding:16px;font-size:18px"
+              onpointerdown="cmd('forward')"
+              onpointerup="cmd('stop')"
+              onpointercancel="cmd('stop')"
+              onpointerleave="cmd('stop')">▲</button>
+      <div></div>
+      <button class="btn" style="background:#334155;padding:16px;font-size:18px"
+              onpointerdown="cmd('left')"
+              onpointerup="cmd('stop')"
+              onpointercancel="cmd('stop')"
+              onpointerleave="cmd('stop')">◄</button>
+      <button class="btn" style="background:#dc2626;padding:16px;font-size:18px"
+              onclick="cmd('stop')">■</button>
+      <button class="btn" style="background:#334155;padding:16px;font-size:18px"
+              onpointerdown="cmd('right')"
+              onpointerup="cmd('stop')"
+              onpointercancel="cmd('stop')"
+              onpointerleave="cmd('stop')">►</button>
+      <div></div>
+      <button class="btn" style="background:#1d4ed8;padding:16px;font-size:18px"
+              onpointerdown="cmd('backward')"
+              onpointerup="cmd('stop')"
+              onpointercancel="cmd('stop')"
+              onpointerleave="cmd('stop')">▼</button>
+      <div></div>
+    </div>
+
+    <div style="margin-top:12px">
+      <div class="flex justify-between" style="font-size:12px;color:#4b7ab5">
+        <span>Speed</span>
+        <b id="spd-lbl" style="color:#e2e8f0">60%</b>
+      </div>
+      <input type="range" min="10" max="100" value="60"
+             style="margin-top:4px" oninput="setSpeed(this.value)">
+    </div>
+
+      <button id="follow-btn" onclick="toggleFollow()"
+              class="btn" style="background:#15803d;width:100%;
+                                margin-top:10px;padding:13px;font-size:14px">
+        Follow Me: OFF (Registered Only)
+      </button>
+  </div>
+
+  <!-- Voice -->
+  <div class="card">
+    <div style="font-size:12px;color:#4b7ab5;font-weight:600;margin-bottom:8px">
+      VOICE COMMANDS
+    </div>
+    <div id="voice-status"
+         style="background:#06101e;border:1px solid #1e3a5f;border-radius:8px;
+                padding:10px;font-size:13px;color:#64748b;margin-bottom:8px">
+      Say <b style="color:#60a5fa">"Hello Medpal follow me"</b> or
+      <b style="color:#60a5fa">"Hi Medpal stop"</b>
+    </div>
+    <div style="font-size:11px;color:#334155;line-height:2">
+      Hello Medpal follow me · Hi Medpal stop<br>
+      Medpal go forward · Medpal turn left<br>
+      Medpal status
+    </div>
+  </div>
+
+  <!-- AI Chat -->
+  <div class="card">
+    <div style="font-size:12px;color:#4b7ab5;font-weight:600;margin-bottom:8px">
+      MEDPAL AI — Medical Assistant
+    </div>
+    <div id="chat-log">
+      <div class="ba">
+        Hi! I'm MedPal. Ask me about symptoms, medicines, or treatments.
+      </div>
+    </div>
+    <div id="typing" style="font-size:11px;color:#4b7ab5;margin:4px 0;display:none">
+      Thinking...
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <input type="text" id="q" placeholder="Ask a medical question..."
+             onkeydown="if(event.key==='Enter')ask()">
+      <button onclick="ask()" class="btn"
+              style="background:#1d4ed8;padding:10px 16px;
+                     font-size:14px;white-space:nowrap">
+        Ask
+      </button>
+    </div>
+  </div>
+
+  <!-- Register person -->
+  <div class="card">
+    <div style="font-size:12px;color:#4b7ab5;font-weight:600;margin-bottom:8px">
+      REGISTER PERSON
+    </div>
+    <div style="font-size:12px;color:#64748b;margin-bottom:8px">
+      Run this on the Pi to register a new person for tracking:
+    </div>
+    <div style="background:#06101e;border-radius:8px;padding:10px;
+                font-family:monospace;font-size:12px;color:#86efac">
+      cd ~/MedPalRobotV2<br>
+      python3 register_person.py --name "YourName"
+    </div>
+  </div>
+
+</div><!-- grid -->
+
+<script>
+let ws, followOn = false, currentTarget = 'anyone';
+
+// ── WebSocket ─────────────────────────────────────────────
+function connect() {
+  ws = new WebSocket(`ws://${location.host}/ws`);
+  ws.onopen  = () => setBadge('conn-badge','ONLINE','#0f3320','#4ade80');
+  ws.onclose = () => { setBadge('conn-badge','OFFLINE','#3b0f0f','#f87171'); setTimeout(connect,3000); };
+  ws.onmessage = e => {
+    const d = JSON.parse(e.data);
+    updateStatus(d);
+  };
+}
+
+function updateStatus(d) {
+  const persons = d.persons ?? 0;
+  const targetName = d.target_name || 'none';
+  document.getElementById('persons-badge').textContent = `${persons} person${persons!==1?'s':''}`;
+  if (targetName !== 'none') {
+    document.getElementById('persons-badge').style.color = '#4ade80';
+    document.getElementById('persons-badge').textContent = targetName;
+  }
+  document.getElementById('dist-badge').textContent    = d.distance ?? '?';
+  document.getElementById('action-badge').textContent  = d.action ?? 'IDLE';
+  // Temp
+  const t = d.temp ?? 0;
+  document.getElementById('temp-badge').textContent = `${t}°C`;
+  const pct = Math.min(t/85*100, 100);
+  const tf  = document.getElementById('tfill');
+  tf.style.width      = pct + '%';
+  tf.style.background = t < 60 ? '#22c55e' : t < 75 ? '#f59e0b' : '#ef4444';
+  // Coral
+  if (d.coral) setBadge('coral-badge','CORAL','#0f2714','#4ade80');
+  else          setBadge('coral-badge','NO CORAL','#0f2940','#4b7ab5');
+  // Action color - update for new states
+  const ab = document.getElementById('action-badge');
+  ab.style.color = d.action?.includes('CENTERED') ? '#4ade80' :
+                   d.action?.includes('TURN')    ? '#fbbf24' :
+                   d.action?.includes('MOVE')    ? '#60a5fa' :
+                   d.action?.includes('WAITING') ? '#f59e0b' :
+                   d.action?.includes('NO_PERSON') ? '#ef4444' : '#94a3b8';
+}
+
+function setBadge(id, text, bg, color) {
+  const b = document.getElementById(id);
+  b.textContent      = text;
+  b.style.background = bg;
+  b.style.color      = color;
+}
+
+connect();
+
+// ── Motor ─────────────────────────────────────────────────
+function cmd(a)      { fetch('/'+a).catch(()=>{}); }
+function setSpeed(v) {
+  document.getElementById('spd-lbl').textContent = v+'%';
+  fetch('/set_speed/'+(v/100)).catch(()=>{});
+}
+function toggleFollow() {
+  followOn = !followOn;
+  fetch('/follow/'+(followOn?'on':'off')).catch(()=>{});
+  const b = document.getElementById('follow-btn');
+  b.textContent      = 'Follow Me: '+(followOn?'ON (Registered)':'OFF');
+  b.style.background = followOn ? '#166534' : '#15803d';
+}
+
+// ── Target person ─────────────────────────────────────────
+function setTarget(name) {
+  currentTarget = name;
+  document.getElementById('target-label').textContent = name;
+  document.querySelectorAll('.pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.name === name);
+  });
+  fetch('/set_target/'+encodeURIComponent(name)).catch(()=>{});
+}
+
+// ── Voice ─────────────────────────────────────────────────
+function showVoice(text, cmd) {
+  document.getElementById('voice-status').innerHTML =
+    `Heard: <b style="color:#fbbf24">${text}</b> → <b style="color:#60a5fa">${cmd}</b>`;
+}
+
+// ── AI Chat ───────────────────────────────────────────────
+function appendChat(q, a) {
+  const log = document.getElementById('chat-log');
+  if (q) {
+    const u = document.createElement('div');
+    u.className = 'bu'; u.textContent = q;
+    log.appendChild(u);
+  }
+  if (a) {
+    const b = document.createElement('div');
+    b.className = 'ba'; b.textContent = a;
+    log.appendChild(b);
+  }
+  log.scrollTop = log.scrollHeight;
+}
+
+async function ask() {
+  const inp = document.getElementById('q');
+  const q   = inp.value.trim();
+  if (!q) return;
+  inp.value = '';
+  appendChat(q, null);
+  document.getElementById('typing').style.display = 'block';
+  try {
+    const r = await fetch('/ask', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({question:q})
+    });
+    const d = await r.json();
+    document.getElementById('typing').style.display = 'none';
+    appendChat(null, d.answer);
+  } catch {
+    document.getElementById('typing').style.display = 'none';
+    appendChat(null, 'Connection error.');
+  }
+}
+</script>
+</body>
+</html>

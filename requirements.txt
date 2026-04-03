@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+python-multipart
+jinja2
+vosk
+sounddevice
+requests
+gpiozero
+piper-tts
+pathvalidate
