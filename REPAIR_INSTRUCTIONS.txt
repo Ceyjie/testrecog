@@ -1,0 +1,45 @@
+# MedPal Vision Server - Model Repair Guide
+
+Follow these steps to generate a valid YOLO model and integrate it into your refactored Vision Server.
+
+### Step 1: Install Dependencies
+Ensure you have the Ultralytics library installed:
+
+```bash
+pip3 install ultralytics
+```
+
+### Step 2: Generate the Optimized Model
+Run this command to export the YOLO11 model to the ONNX format required by the VisionEngine:
+
+```bash
+python3 -c "from ultralytics import YOLO; model = YOLO('yolo11n.pt'); model.export(format='onnx', imgsz=320)"
+```
+
+### Step 3: Move the Model to the Project
+Move the generated file into your models folder:
+
+```bash
+mv yolo11n.onnx /home/medpal/Desktop/cpp_robot/rebot/models/
+```
+
+### Step 4: Uncomment Inference Code
+Open `/home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp` and uncomment the following sections:
+
+1. In the `initialize()` method:
+   - Uncomment the `detector_ = ...` line.
+   - Uncomment the `detector_.setPreferableBackend(...)` and `detector_.setPreferableTarget(...)` lines.
+
+2. In the `inference_thread()` method:
+   - Uncomment the line: `std::vector<cv::Rect> body_detections = run_yolo(frame);`
+   - Uncomment the drawing loop for `body_detections`.
+
+### Step 5: Rebuild the Project
+Finally, recompile the server with the new model:
+
+```bash
+cd /home/medpal/Desktop/cpp_robot/rebot/cpp/build
+make
+```
+
+You can now run the server using `sudo ./vision_server`.

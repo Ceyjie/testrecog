@@ -1,4 +1,4 @@
-# Install script for directory: /home/medpal/MedPalRobotV2/cpp
+# Install script for directory: /home/medpal/Desktop/cpp_robot/rebot/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/vision_server"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/medpal/MedPalRobotV2/cpp/build/vision_server")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/medpal/Desktop/cpp_robot/rebot/cpp/build/vision_server")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/vision_server" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/vision_server")
     file(RPATH_CHANGE
@@ -63,17 +63,17 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/medpal/MedPalRobotV2/cpp/build/CMakeFiles/vision_server.dir/install-cxx-module-bmi-Release.cmake" OPTIONAL)
+  include("/home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles/vision_server.dir/install-cxx-module-bmi-Release.cmake" OPTIONAL)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/medpal/models" TYPE DIRECTORY FILES "/home/medpal/MedPalRobotV2/cpp/models/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/medpal/models" TYPE DIRECTORY FILES "/home/medpal/Desktop/cpp_robot/rebot/cpp/models/")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/medpal/MedPalRobotV2/cpp/build/install_local_manifest.txt"
+  file(WRITE "/home/medpal/Desktop/cpp_robot/rebot/cpp/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -89,6 +89,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/medpal/MedPalRobotV2/cpp/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/medpal/Desktop/cpp_robot/rebot/cpp/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

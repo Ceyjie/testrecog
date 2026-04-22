@@ -1,0 +1,75 @@
+# MedPal Vision Server - Face Identification Setup Guide
+
+Follow these steps to integrate the Python face recognition service with your C++ Vision Engine.
+
+### Step 1: Start the Python Recognition Service
+Open a terminal and run the Python service. This must stay running while the vision server is active.
+
+```bash
+# Navigate to project root
+cd /home/medpal/Desktop/cpp_robot/rebot
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Run the recognition service
+python3 python/recognition_service.py
+```
+*You should see: "Recognition Service Started and listening on /tmp/medpal_rec.sock"*
+
+### Step 2: Implement Identification in C++
+Update your `VisionEngine` to call the Python service. Open `/home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp` and update the `inference_thread()` method to the following:
+
+```cpp
+void VisionEngine::inference_thread() {
+    while (running_) {
+        cv::Mat frame;
+        {
+            std::lock_guard<std::mutex> lk(raw_frame_mtx_);
+            if (raw_frame_.empty()) continue;
+            frame = raw_frame_.clone();
+        }
+        
+        // 1. Run detections
+        std::vector<cv::Rect> body_detections = run_yolo(frame);
+        std::vector<cv::Rect> face_detections = run_face_detection(frame);
+        
+        // 2. Recognize faces
+        for (const auto& box : face_detections) {
+            // Ensure crop is within bounds
+            cv::Rect valid_box = box & cv::Rect(0, 0, frame.cols, frame.rows);
+            if(valid_box.width < 10 || valid_box.height < 10) continue;
+            
+            cv::Mat face_crop = frame(valid_box);
+            std::string name = recognize_face(face_crop); // Calls Python service
+            
+            // Draw box and name
+            cv::rectangle(frame, valid_box, {255, 100, 0}, 2);
+            cv::putText(frame, name, {valid_box.x, valid_box.y - 10}, 
+                        cv::FONT_HERSHEY_SIMPLEX, 0.7, {255, 100, 0}, 2);
+        }
+
+        // Draw body detections
+        for (const auto& box : body_detections) {
+            cv::rectangle(frame, box, {0, 255, 0}, 2);
+        }
+        
+        std::lock_guard<std::mutex> lk(processed_frame_mtx_);
+        processed_frame_ = frame;
+    }
+}
+```
+
+### Step 3: Rebuild and Run
+In a second terminal, rebuild the C++ server:
+
+```bash
+cd /home/medpal/Desktop/cpp_robot/rebot/cpp/build
+make
+sudo ./vision_server
+```
+
+### Step 4: Access the Stream
+1. Open a web browser on your laptop.
+2. Go to: `http://<YOUR_PI_IP_ADDRESS>:8080/`
+3. Point the camera at a registered person to see the name overlay.

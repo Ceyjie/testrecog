@@ -72,10 +72,14 @@ bool check_coral() {
 }
 
 // ── Depth processing ─────────────────────────────────────────
+// Note: Orbbec SDK integration required for actual depth data.
+// This placeholder waits for proper SDK integration.
 void depth_thread_func() {
     try {
-        // Orbbec SDK placeholder - integrate with actual SDK
-        // For now, use simulated depth
+        // TODO: Integrate Orbbec SDK for depth camera
+        // - Initialize depth stream from Orbbec device
+        // - Map depth to color coordinates
+        // - Update g_depth with latest frame
         while (g_running) {
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
@@ -106,29 +110,47 @@ float sample_depth(int cx, int cy) {
     return cnt > 0 ? (sum / cnt) / 1000.0f : -1;
 }
 
+// ── GPIO sysfs helpers ─────────────────────────────────────
+void gpio_write(int pin, int value) {
+    std::string cmd = "echo " + std::to_string(value) + " > /sys/class/gpio/gpio" + std::to_string(pin) + "/value";
+    system(cmd.c_str());
+}
+
+void gpio_pwm(int pin, int duty) {
+    std::string cmd = "echo " + std::to_string(duty) + " > /sys/class/gpio/gpio" + std::to_string(pin) + "/value";
+    system(cmd.c_str());
+}
+
+void gpio_export(int pin) {
+    system(("echo " + std::to_string(pin) + " > /sys/class/gpio/export").c_str());
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    system(("echo out > /sys/class/gpio/gpio" + std::to_string(pin) + "/direction").c_str());
+}
+
 // ── Motor control via sysfs ─────────────────────────────────
 void motor_command(const std::string& cmd) {
     if (cmd == g_last_motor_cmd) return;
     g_last_motor_cmd = cmd;
     
-    float speed = g_config.follow_speed;
+    int speed = (int)(g_config.follow_speed * 255);
     
     if (cmd == "forward") {
-        // Left motor forward
-        system(("echo " + std::to_string(g_config.left_lpwm) + " > /dev/null").c_str());
-        // Right motor forward
-        system(("echo " + std::to_string(g_config.right_rpwm) + " > /dev/null").c_str());
+        gpio_pwm(g_config.left_lpwm, speed);
+        gpio_pwm(g_config.right_rpwm, speed);
     } else if (cmd == "backward") {
-        system(("echo " + std::to_string(g_config.left_rpwm) + " > /dev/null").c_str());
-        system(("echo " + std::to_string(g_config.right_lpwm) + " > /dev/null").c_str());
+        gpio_pwm(g_config.left_rpwm, speed);
+        gpio_pwm(g_config.right_lpwm, speed);
     } else if (cmd == "left") {
-        system(("echo " + std::to_string(g_config.left_lpwm) + " > /dev/null").c_str());
-        system(("echo " + std::to_string(g_config.right_rpwm) + " > /dev/null").c_str());
+        gpio_pwm(g_config.left_lpwm, speed);
+        gpio_pwm(g_config.right_rpwm, speed);
     } else if (cmd == "right") {
-        system(("echo " + std::to_string(g_config.left_rpwm) + " > /dev/null").c_str());
-        system(("echo " + std::to_string(g_config.right_lpwm) + " > /dev/null").c_str());
+        gpio_pwm(g_config.left_rpwm, speed);
+        gpio_pwm(g_config.right_lpwm, speed);
     } else if (cmd == "stop") {
-        // Stop all motors
+        gpio_pwm(g_config.left_rpwm, 0);
+        gpio_pwm(g_config.left_lpwm, 0);
+        gpio_pwm(g_config.right_rpwm, 0);
+        gpio_pwm(g_config.right_lpwm, 0);
     }
 }
 
@@ -224,19 +246,22 @@ void socket_thread() {
         int n = recv(g_client_fd, buf, sizeof(buf) - 1, 0);
         if (n > 0) {
             std::string cmd(buf, n);
-            if (cmd.find("follow:on") != std::string::npos) {
+            if (cmd == "follow:on") {
                 g_following = true;
                 std::cout << "[Cmd] Follow ON\n";
-            } else if (cmd.find("follow:off") != std::string::npos) {
+            } else if (cmd == "follow:off") {
                 g_following = false;
                 motor_command("stop");
                 std::cout << "[Cmd] Follow OFF\n";
-            } else if (cmd.find("target:") != std::string::npos) {
+            } else if (cmd.rfind("target:", 0) == 0 && cmd.length() > 7) {
                 g_target_name = cmd.substr(7);
                 std::cout << "[Cmd] Target: " << g_target_name << "\n";
-            } else if (cmd.find("motor:") != std::string::npos) {
+            } else if (cmd.rfind("motor:", 0) == 0 && cmd.length() > 6) {
                 std::string motor_cmd = cmd.substr(6);
-                motor_command(motor_cmd);
+                if (motor_cmd == "forward" || motor_cmd == "backward" || 
+                    motor_cmd == "left" || motor_cmd == "right" || motor_cmd == "stop") {
+                    motor_command(motor_cmd);
+                }
             }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(50));

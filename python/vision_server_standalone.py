@@ -756,9 +756,6 @@ class FaceRecognitionSystem:
         
         return None
     
-    def _recognize_face_embedding(self, embedding):
-        return None
-    
     def _validate_face_quality(self, gray_face):
         """Validate that the face region has sufficient quality"""
         if gray_face is None or gray_face.size == 0:

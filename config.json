@@ -1,0 +1,16 @@
+{
+  "camera": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "models": {
+    "yolo": "/home/medpal/Desktop/cpp_robot/rebot/models/yolo11n.onnx",
+    "face": "/home/medpal/Desktop/cpp_robot/rebot/models/face_yunet.onnx"
+  },
+  "gpio": {
+    "left_lpwm": 13,
+    "right_rpwm": 18
+  },
+  "socket_path": "/tmp/medpal_rec.sock"
+}

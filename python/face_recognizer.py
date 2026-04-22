@@ -4,7 +4,7 @@ import cv2, os, json, numpy as np, logging
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("face_recognizer")
 
-PERSONS_DIR = "/home/medpal/MedPalRobotV2/data/persons"
+PERSONS_DIR = "/home/medpal/Desktop/cpp_robot/rebot/data/persons"
 
 class FaceRecognizer:
     def __init__(self):
@@ -93,26 +93,23 @@ class FaceRecognizer:
         try:
             processed = self._preprocess(face_roi)
             
-            results = []
-            
+            # Print confidence to terminal for debugging
             label_lbph, conf_lbph = self.lbph.predict(processed)
-            if conf_lbph < 85:
-                results.append((label_lbph, 100 - conf_lbph))
-            
             label_eigen, conf_eigen = self.eigen.predict(processed)
-            if conf_eigen < 2000:
-                results.append((label_eigen, 100 - conf_eigen/30))
             
-            if results:
-                best_label = max(results, key=lambda x: x[1])[0]
-                name = self.label_to_name.get(best_label, "unknown")
-                log.info(f"Recognized: {name}")
+            print(f"DEBUG: LBPH conf: {conf_lbph}, Eigen conf: {conf_eigen}")
+            
+            # Loosened threshold for testing (LBPH < 100 is generally acceptable)
+            if conf_lbph < 100: 
+                name = self.label_to_name.get(label_lbph, "unknown")
+                print(f"Recognized: {name}")
                 return name
             
         except Exception as e:
             log.warning(f"Recognition error: {e}")
         
-        return None
+        print("Recognized: unknown")
+        return "unknown"
     
     def retrain(self):
         self.trained = False

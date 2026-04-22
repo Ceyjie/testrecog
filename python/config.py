@@ -1,4 +1,8 @@
 # config.py — All configuration for MedPalRobotV2
+import os
+
+# Base directory - auto-detect
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── GPIO Pins ─────────────────────────────────────────────
 LEFT_RPWM  = 12
@@ -21,11 +25,11 @@ TURN_SPEED        = 0.4
 
 # ── C++ vision server ─────────────────────────────────────
 SOCKET_PATH  = "/tmp/medpal.sock"
-CPP_BIN      = "/home/medpal/MedPalRobotV2/cpp/build/vision_server"
+CPP_BIN      = os.path.join(BASE_DIR, "cpp/build/vision_server")
 CPP_LIB_PATH = "/home/medpal/pyorbbecsdk/sdk/lib/arm64"
 
 # ── Vosk voice ────────────────────────────────────────────
-VOSK_MODEL_PATH = "/home/medpal/MedPalRobotV2/vosk-model"
+VOSK_MODEL_PATH = os.path.join(BASE_DIR, "vosk-model")
 WAKE_WORD       = "medpal"
 
 # ── Ollama AI ─────────────────────────────────────────────
@@ -34,9 +38,8 @@ OLLAMA_URL     = "http://localhost:11434/api/generate"
 OLLAMA_TIMEOUT = 60
 
 # ── Piper TTS ─────────────────────────────────────────────
-PIPER_MODEL = "/home/medpal/MedPalRobotV2/piper-voices/en_US-lessac-medium.onnx"
+PIPER_MODEL = os.path.join(BASE_DIR, "piper-voices/en_US-lessac-medium.onnx")
 
 # ── Paths ─────────────────────────────────────────────────
-BASE_DIR    = "/home/medpal/MedPalRobotV2"
-PERSONS_DIR = "/home/medpal/MedPalRobotV2/data/persons"
-LOG_FILE    = "/home/medpal/MedPalRobotV2/medpal.log"
+PERSONS_DIR = os.path.join(BASE_DIR, "data/persons")
+LOG_FILE    = os.path.join(BASE_DIR, "medpal.log")

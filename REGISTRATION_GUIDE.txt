@@ -1,0 +1,45 @@
+# MedPal Vision Server - Face Registration & Identification Guide
+
+Follow these steps to register a new person and ensure the identification service recognizes them.
+
+### Step 1: Capture Images
+Run the registration script in your terminal to capture samples for a new person (replace "YourName" with the actual name).
+
+```bash
+# Navigate to project root
+cd /home/medpal/Desktop/cpp_robot/rebot
+
+# Run registration
+python3 register_person.py --name "YourName"
+```
+*Follow the on-screen instructions to capture 15 samples.*
+
+### Step 2: Manually Retrain the Recognizer
+After registration, you must force the system to retrain the recognition models with the new data.
+
+```bash
+# Set Python path to include your library
+export PYTHONPATH=$PYTHONPATH:$(pwd)/python
+
+# Force a retrain
+python3 -c "import face_recognizer; face_recognizer.get_recognizer().retrain()"
+```
+*Look for: "INFO:face_recognizer:Trained with ... samples"*
+
+### Step 3: Restart the Identification Service
+For the Python service to "see" the newly trained data, you must restart it.
+
+1.  In the terminal running `recognition_service.py`, press **Ctrl+C** to stop it.
+2.  Start it again:
+    ```bash
+    # Activate environment
+    source venv/bin/activate
+    
+    # Start service
+    python3 python/recognition_service.py
+    ```
+
+### Step 4: Verify
+1. Ensure the main Vision Server is running: `sudo ./cpp/build/vision_server`
+2. Open the browser stream at: `http://<YOUR_PI_IP_ADDRESS>:8080/`
+3. The name should appear on the screen when the registered person is detected.

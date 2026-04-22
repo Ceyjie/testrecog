@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/medpal/MedPalRobotV2/cpp/src/main.cpp" "CMakeFiles/vision_server.dir/src/main.cpp.o" "gcc" "CMakeFiles/vision_server.dir/src/main.cpp.o.d"
+  "/home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp" "CMakeFiles/vision_server.dir/src/depth_processor.cpp.o" "gcc" "CMakeFiles/vision_server.dir/src/depth_processor.cpp.o.d"
+  "/home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp" "CMakeFiles/vision_server.dir/src/main_new.cpp.o" "gcc" "CMakeFiles/vision_server.dir/src/main_new.cpp.o.d"
+  "/home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp" "CMakeFiles/vision_server.dir/src/vision_engine.cpp.o" "gcc" "CMakeFiles/vision_server.dir/src/vision_engine.cpp.o.d"
   "" "vision_server" "gcc" "CMakeFiles/vision_server.dir/link.d"
   )
 

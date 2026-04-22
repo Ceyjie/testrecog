@@ -1,85 +1,52 @@
 #pragma once
-#include <atomic>
-#include <string>
-#include <vector>
+#include "depth_processor.hpp"
 #include <opencv2/opencv.hpp>
+#include <opencv2/dnn.hpp>
+#include <thread>
+#include <mutex>
+#include <atomic>
+#include <vector>
 
 namespace medpal {
 
-struct RobotConfig {
-    int color_width = 1280;
-    int color_height = 720;
-    int depth_width = 640;
-    int depth_height = 480;
-    int yolo_size = 320;
-    int frame_skip = 3;
-    int stream_fps = 30;
-    
-    float follow_stop_dist = 0.25f;
-    float follow_start_dist = 1.2f;
-    float center_tolerance = 0.12f;
-    float follow_speed = 0.6f;
-    float turn_speed = 0.45f;
-    float confidence_threshold = 0.45f;
-    
-    std::string yolo_model = "/home/medpal/MedPalRobotV2/models/yolov8n.onnx";
-    std::string face_cascade = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
-    std::string socket_path = "/tmp/medpal.sock";
-};
-
-struct Detection {
-    cv::Rect body_box;
-    cv::Rect face_box;
-    float confidence = 0.0f;
-    int center_x = 0;
-    int center_y = 0;
-    float distance = -1.0f;
-    std::string person_name;
-};
-
 class VisionEngine {
 public:
-    VisionEngine(const RobotConfig& config);
+    VisionEngine();
     ~VisionEngine();
-    
-    bool init();
+
+    bool initialize();
     void start();
     void stop();
-    
-    Detection get_detection();
-    bool coral_available() const { return coral_available_; }
-    bool is_following() const { return following_; }
-    
-    void set_following(bool val) { following_ = val; }
-    void set_target(const std::string& name) { target_name_ = name; }
-    
+
+    cv::Mat get_latest_frame();
+    std::string recognize_face(const cv::Mat& face_crop);
+    void set_motor_speed(const std::string& cmd, float speed);
+
 private:
-    void camera_loop();
-    void depth_loop();
-    
-    Detection detect_person(cv::Mat& frame);
-    cv::Mat capture_frame();
-    float sample_depth(int x, int y);
-    
-    RobotConfig config_;
+    void capture_thread();
+    void inference_thread();
+    void streaming_thread();
+
+    std::vector<cv::Rect> run_yolo(cv::Mat& frame);
+    std::vector<cv::Rect> run_face_detection(cv::Mat& frame);
+
+    void gpio_pwm(int pin, int duty);
+
     std::atomic<bool> running_{false};
-    std::atomic<bool> following_{false};
-    std::atomic<bool> coral_available_{false};
     
     cv::VideoCapture cap_;
-    cv::dnn::Net yolo_net_;
-    cv::CascadeClassifier face_cascade_;
+    cv::dnn::Net detector_;
+    cv::Ptr<cv::FaceDetectorYN> face_detector_;
     
-    cv::Mat latest_frame_;
-    cv::Mat depth_frame_;
-    Detection current_detection_;
+    DepthProcessor depth_proc_;
     
-    std::mutex frame_mtx_;
-    std::mutex depth_mtx_;
-    std::mutex detection_mtx_;
+    cv::Mat raw_frame_;
+    std::mutex raw_frame_mtx_;
+    cv::Mat processed_frame_;
+    std::mutex processed_frame_mtx_;
     
-    std::thread camera_thread_;
-    std::thread depth_thread_;
+    std::thread capture_thr_;
+    std::thread inference_thr_;
 };
 
-}
+} // namespace medpal

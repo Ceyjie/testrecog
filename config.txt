@@ -1,0 +1,4 @@
+yolo_model=/home/medpal/Desktop/cpp_robot/rebot/models/yolo11n.onnx
+face_model=/home/medpal/Desktop/cpp_robot/rebot/models/face_yunet.onnx
+socket_path=/tmp/medpal_rec.sock
+stream_port=8080

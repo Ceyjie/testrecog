@@ -2,7 +2,8 @@
 # register_person.py — Better face registration with more samples
 import cv2, os, argparse, json, time
 
-PERSONS_DIR = "/home/medpal/MedPalRobotV2/data/persons"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PERSONS_DIR = os.path.join(BASE_DIR, "data/persons")
 REGISTRY    = os.path.join(PERSONS_DIR, "registry.json")
 HAAR_PATH   = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
 
@@ -120,7 +121,7 @@ os.remove(os.path.join(PERSONS_DIR, "recognizer.yml")) if os.path.exists(os.path
 print("\nRe-training recognizer...")
 try:
     import sys
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'python'))
+    sys.path.insert(0, os.path.join(BASE_DIR, "python"))
     import face_recognizer
     face_recognizer.get_recognizer().retrain()
     print("✓ Recognizer trained!")

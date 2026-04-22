@@ -1,0 +1,31 @@
+# MedPal Astra Pro Depth Sensor Hardening Plan
+
+This plan aims to resolve the "Device response with bad magic" and hardware communication errors occurring between the Raspberry Pi 5 and the Astra Pro camera.
+
+## Phase 1: Hardware & Kernel Environment Audit
+- **Goal:** Identify power or USB bus negotiation issues.
+- **Actions:**
+  - Check `dmesg` output to detect USB voltage drops or descriptor timeouts.
+  - Verify `lsusb -t` to ensure the device is running at USB 3.0 (SuperSpeed) speeds.
+
+## Phase 2: SDK Initialization Hardening
+- **Goal:** Implement a robust handshake sequence in the Astra SDK.
+- **Actions:**
+  - Implement a dedicated device discovery sequence in `DepthProcessor::initialize()` instead of a direct `pipe_->start()` call.
+  - Add explicit error handling for device handshake failures.
+  - Introduce an initialization delay to allow the camera circuitry (especially the structured light projector) to stabilize.
+
+## Phase 3: Diagnostic Isolation
+- **Goal:** Verify if the issue is software-side (integration) or hardware-side (driver/power).
+- **Actions:**
+  - Create a standalone diagnostic C++ binary that uses only the Orbbec SDK to isolate the depth sensor communication from the Vision Engine.
+
+## Phase 4: Final Integration
+- **Goal:** Re-integrate successful initialization logic into `VisionEngine`.
+- **Actions:**
+  - Integrate discovered properties (e.g., high-speed mode, specific depth sensor configuration) into the `DepthProcessor` class.
+
+---
+### Recommendations for Success
+1. **USB Power:** Structured light sensors are highly power-sensitive. A powered USB 3.0 hub is strongly recommended for the Raspberry Pi 5 to prevent "Input/Output Errors".
+2. **Firmware:** Ensure the Orbbec firmware is up-to-date, as recent Pi 5 kernel updates have changed USB host controller behavior.

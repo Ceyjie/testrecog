@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DHAVE_ORBBEC=1
 
-CXX_INCLUDES = -I/home/medpal/pyorbbecsdk/sdk/include -isystem /usr/include/opencv4
+CXX_INCLUDES = -I/home/medpal/pyorbbecsdk/sdk/include -I/home/medpal/Desktop/cpp_robot/rebot/cpp/include -isystem /usr/include/opencv4
 
 CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -O3 -march=armv8-a+fp+simd+crc+crypto -mtune=cortex-a76 -ffast-math -flto -Wall -Wextra
 

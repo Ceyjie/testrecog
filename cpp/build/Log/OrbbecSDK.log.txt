@@ -1,0 +1,19 @@
+[04/22 20:04:24.451844][error][72643][UsbEnumeratorLibusb.cpp:159] Invalid descriptor index: 0
+[04/22 20:04:24.451911][error][72643][UsbEnumeratorLibusb.cpp:420] Failed to query USB device serial number
+[04/22 20:04:24.453103][error][72643][UsbEnumeratorLibusb.cpp:166] Failed to get string descriptor 3: error=Input/Output Error
+[04/22 20:04:24.453114][error][72643][UsbEnumeratorLibusb.cpp:436] Failed to query USB device interface name. SN: 
+[04/22 20:04:24.453416][error][72643][UsbEnumeratorLibusb.cpp:166] Failed to get string descriptor 4: error=Overflow
+[04/22 20:04:24.453425][error][72643][UsbEnumeratorLibusb.cpp:436] Failed to query USB device interface name. SN: 
+[04/22 20:04:24.453431][error][72643][UsbEnumeratorLibusb.cpp:159] Invalid descriptor index: 0
+[04/22 20:04:24.453434][error][72643][UsbEnumeratorLibusb.cpp:436] Failed to query USB device interface name. SN: 
+[04/22 20:04:24.513529][error][72643][UsbEnumeratorLibusb.cpp:159] Invalid descriptor index: 0
+[04/22 20:04:24.513572][error][72643][UsbEnumeratorLibusb.cpp:420] Failed to query USB device serial number
+[04/22 20:04:24.520916][info][72643][LinuxUsbPal.cpp:335] Create PollingDeviceWatcher!
+[04/22 20:04:24.520952][info][72643][DeviceManager.cpp:25] Current found device(s): (1)
+[04/22 20:04:24.520956][info][72643][DeviceManager.cpp:34] 	- Name: Bootloader device, PID: 0x0501, SN/ID: , Connection: USB2.0
+[04/22 20:04:24.520960][info][72643][DeviceManager.cpp:339] Enable net device enumeration: true
+[04/22 20:04:26.529152][info][72643][DeviceManager.cpp:25] Current device(s) list: (1)
+[04/22 20:04:26.529196][info][72643][DeviceManager.cpp:34] 	- Name: Bootloader device, PID: 0x0501, SN/ID: , Connection: USB2.0
+[04/22 20:04:26.537088][error][72643][ObV4lUvcDevicePort.cpp:1044] set xu failed, errno: No such file or directory
+[04/22 20:04:26.637276][error][72643][ObV4lUvcDevicePort.cpp:1044] set xu failed, errno: No such file or directory
+[04/22 20:04:26.737500][warning][72643][ObException.hpp:48] Request failed, statusCode: 5, msg: Device response with bad magic , magic=0x0, expectOpCode=0x4252

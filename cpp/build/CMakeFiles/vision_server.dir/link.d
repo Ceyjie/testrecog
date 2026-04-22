@@ -2,10 +2,15 @@ vision_server: \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crti.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
-  CMakeFiles/vision_server.dir/src/main.cpp.o \
+  CMakeFiles/vision_server.dir/src/main_new.cpp.o \
+  CMakeFiles/vision_server.dir/src/vision_engine.cpp.o \
+  CMakeFiles/vision_server.dir/src/depth_processor.cpp.o \
+  /home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so \
+  /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libpthread.a \
   /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.10.0 \
   /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.10.0 \
   /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.10.0 \
+  /home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libpthread.a \
   /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.10.0 \
   /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.10.0 \
@@ -40,16 +45,11 @@ vision_server: \
   /usr/lib/gcc/aarch64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crtn.o \
-  /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.10.0 \
+  /lib/aarch64-linux-gnu/libdl.so.2 \
+  /lib/aarch64-linux-gnu/libpthread.so.0 \
   /lib/aarch64-linux-gnu/libm.so.6 \
   /lib/ld-linux-aarch64.so.1 \
-  /lib/aarch64-linux-gnu/libOpenGL.so.0 \
-  /lib/aarch64-linux-gnu/libQt5Test.so.5 \
-  /lib/aarch64-linux-gnu/libQt5OpenGL.so.5 \
-  /lib/aarch64-linux-gnu/libQt5Widgets.so.5 \
-  /lib/aarch64-linux-gnu/libQt5Gui.so.5 \
-  /lib/aarch64-linux-gnu/libQt5Core.so.5 \
-  /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.10.0 \
+  /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.10.0 \
   /lib/aarch64-linux-gnu/libdc1394.so.25 \
   /lib/aarch64-linux-gnu/libgstbase-1.0.so.0 \
   /lib/aarch64-linux-gnu/libgstreamer-1.0.so.0 \
@@ -67,31 +67,21 @@ vision_server: \
   /lib/aarch64-linux-gnu/libgphoto2.so.6 \
   /lib/aarch64-linux-gnu/libgphoto2_port.so.12 \
   /lib/aarch64-linux-gnu/libprotobuf.so.32 \
-  /lib/aarch64-linux-gnu/libz.so.1 \
-  /lib/aarch64-linux-gnu/libGLX.so.0 \
-  /lib/aarch64-linux-gnu/liblapack.so.3 \
-  /lib/aarch64-linux-gnu/libblas.so.3 \
-  /lib/aarch64-linux-gnu/libtbb.so.12 \
-  /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.10.0 \
-  /usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.10.0 \
-  /lib/aarch64-linux-gnu/libGLdispatch.so.0 \
-  /lib/aarch64-linux-gnu/libGL.so.1 \
-  /lib/aarch64-linux-gnu/libpng16.so.16 \
-  /lib/aarch64-linux-gnu/libharfbuzz.so.0 \
-  /lib/aarch64-linux-gnu/libmd4c.so.0 \
-  /lib/aarch64-linux-gnu/libdouble-conversion.so.3 \
-  /lib/aarch64-linux-gnu/libicui18n.so.76 \
-  /lib/aarch64-linux-gnu/libicuuc.so.76 \
-  /lib/aarch64-linux-gnu/libpcre2-16.so.0 \
-  /lib/aarch64-linux-gnu/libzstd.so.1 \
   /lib/aarch64-linux-gnu/libjpeg.so.62 \
   /lib/aarch64-linux-gnu/libwebp.so.7 \
+  /lib/aarch64-linux-gnu/libpng16.so.16 \
   /lib/aarch64-linux-gnu/libgdcmMSFF.so.3.0 \
   /lib/aarch64-linux-gnu/libtiff.so.6 \
   /lib/aarch64-linux-gnu/libopenjp2.so.7 \
   /lib/aarch64-linux-gnu/libOpenEXR-3_1.so.30 \
   /lib/aarch64-linux-gnu/libgdal.so.36 \
   /lib/aarch64-linux-gnu/libgdcmDSED.so.3.0 \
+  /lib/aarch64-linux-gnu/libz.so.1 \
+  /lib/aarch64-linux-gnu/libGLX.so.0 \
+  /lib/aarch64-linux-gnu/liblapack.so.3 \
+  /lib/aarch64-linux-gnu/libblas.so.3 \
+  /lib/aarch64-linux-gnu/libtbb.so.12 \
+  /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.10.0 \
   /lib/aarch64-linux-gnu/libraw1394.so.11 \
   /lib/aarch64-linux-gnu/libusb-1.0.so.0 \
   /lib/aarch64-linux-gnu/libgmodule-2.0.so.0 \
@@ -152,11 +142,6 @@ vision_server: \
   /lib/aarch64-linux-gnu/libOpenCL.so.1 \
   /lib/aarch64-linux-gnu/libltdl.so.7 \
   /lib/aarch64-linux-gnu/libexif.so.12 \
-  /lib/aarch64-linux-gnu/libopenblas.so.0 \
-  /lib/aarch64-linux-gnu/libgfortran.so.5 \
-  /lib/aarch64-linux-gnu/libfreetype.so.6 \
-  /lib/aarch64-linux-gnu/libgraphite2.so.3 \
-  /lib/aarch64-linux-gnu/libicudata.so.76 \
   /lib/aarch64-linux-gnu/libsharpyuv.so.0 \
   /lib/aarch64-linux-gnu/libgdcmDICT.so.3.0 \
   /lib/aarch64-linux-gnu/libgdcmjpeg8.so.3.0 \
@@ -167,6 +152,7 @@ vision_server: \
   /lib/aarch64-linux-gnu/libjson-c.so.5 \
   /lib/aarch64-linux-gnu/libgdcmIOD.so.3.0 \
   /lib/aarch64-linux-gnu/libgdcmCommon.so.3.0 \
+  /lib/aarch64-linux-gnu/libzstd.so.1 \
   /lib/aarch64-linux-gnu/libLerc.so.4 \
   /lib/aarch64-linux-gnu/libjbig.so.0 \
   /lib/aarch64-linux-gnu/libdeflate.so.0 \
@@ -206,6 +192,9 @@ vision_server: \
   /lib/aarch64-linux-gnu/libproj.so.25 \
   /lib/aarch64-linux-gnu/libdfalt.so.0 \
   /lib/aarch64-linux-gnu/libmfhdfalt.so.0 \
+  /lib/aarch64-linux-gnu/libGLdispatch.so.0 \
+  /lib/aarch64-linux-gnu/libopenblas.so.0 \
+  /lib/aarch64-linux-gnu/libgfortran.so.5 \
   /lib/aarch64-linux-gnu/libsoxr.so.0 \
   /lib/aarch64-linux-gnu/libgio-2.0.so.0 \
   /lib/aarch64-linux-gnu/libgdk_pixbuf-2.0.so.0 \
@@ -217,6 +206,7 @@ vision_server: \
   /lib/aarch64-linux-gnu/libpangocairo-1.0.so.0 \
   /lib/aarch64-linux-gnu/libpango-1.0.so.0 \
   /lib/aarch64-linux-gnu/libfontconfig.so.1 \
+  /lib/aarch64-linux-gnu/libfreetype.so.6 \
   /lib/aarch64-linux-gnu/libXext.so.6 \
   /lib/aarch64-linux-gnu/libXrender.so.1 \
   /lib/aarch64-linux-gnu/libxcb.so.1 \
@@ -263,6 +253,7 @@ vision_server: \
   /lib/aarch64-linux-gnu/liblber.so.2 \
   /lib/aarch64-linux-gnu/libxxhash.so.0 \
   /lib/aarch64-linux-gnu/libarpack.so.2 \
+  /lib/aarch64-linux-gnu/libicuuc.so.76 \
   /lib/aarch64-linux-gnu/libyuv.so.0 \
   /lib/aarch64-linux-gnu/libgav1.so.1 \
   /lib/aarch64-linux-gnu/libgpgmepp.so.6 \
@@ -285,6 +276,7 @@ vision_server: \
   /lib/aarch64-linux-gnu/libmount.so.1 \
   /lib/aarch64-linux-gnu/libselinux.so.1 \
   /lib/aarch64-linux-gnu/libpangoft2-1.0.so.0 \
+  /lib/aarch64-linux-gnu/libharfbuzz.so.0 \
   /lib/aarch64-linux-gnu/libfribidi.so.0 \
   /lib/aarch64-linux-gnu/libthai.so.0 \
   /lib/aarch64-linux-gnu/libXau.so.6 \
@@ -296,11 +288,13 @@ vision_server: \
   /lib/aarch64-linux-gnu/libkrb5support.so.0 \
   /lib/aarch64-linux-gnu/libmd.so.0 \
   /lib/aarch64-linux-gnu/libsasl2.so.2 \
+  /lib/aarch64-linux-gnu/libicudata.so.76 \
   /lib/aarch64-linux-gnu/libabsl_synchronization.so.20240722 \
   /lib/aarch64-linux-gnu/libgpgme.so.11 \
   /lib/aarch64-linux-gnu/libnssutil3.so \
   /lib/aarch64-linux-gnu/libplds4.so \
   /lib/aarch64-linux-gnu/libblkid.so.1 \
+  /lib/aarch64-linux-gnu/libgraphite2.so.3 \
   /lib/aarch64-linux-gnu/libdatrie.so.1 \
   /lib/aarch64-linux-gnu/libkeyutils.so.1 \
   /lib/aarch64-linux-gnu/libresolv.so.2 \
@@ -337,13 +331,23 @@ vision_server: \
 
 /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o:
 
-CMakeFiles/vision_server.dir/src/main.cpp.o:
+CMakeFiles/vision_server.dir/src/main_new.cpp.o:
+
+CMakeFiles/vision_server.dir/src/vision_engine.cpp.o:
+
+CMakeFiles/vision_server.dir/src/depth_processor.cpp.o:
+
+/home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libpthread.a:
 
 /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.10.0:
 
 /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.10.0:
 
 /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.10.0:
+
+/home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libpthread.a:
 
@@ -413,25 +417,15 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crtn.o:
 
-/usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.10.0:
+/lib/aarch64-linux-gnu/libdl.so.2:
+
+/lib/aarch64-linux-gnu/libpthread.so.0:
 
 /lib/aarch64-linux-gnu/libm.so.6:
 
 /lib/ld-linux-aarch64.so.1:
 
-/lib/aarch64-linux-gnu/libOpenGL.so.0:
-
-/lib/aarch64-linux-gnu/libQt5Test.so.5:
-
-/lib/aarch64-linux-gnu/libQt5OpenGL.so.5:
-
-/lib/aarch64-linux-gnu/libQt5Widgets.so.5:
-
-/lib/aarch64-linux-gnu/libQt5Gui.so.5:
-
-/lib/aarch64-linux-gnu/libQt5Core.so.5:
-
-/usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.10.0:
+/usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.10.0:
 
 /lib/aarch64-linux-gnu/libdc1394.so.25:
 
@@ -467,43 +461,11 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /lib/aarch64-linux-gnu/libprotobuf.so.32:
 
-/lib/aarch64-linux-gnu/libz.so.1:
-
-/lib/aarch64-linux-gnu/libGLX.so.0:
-
-/lib/aarch64-linux-gnu/liblapack.so.3:
-
-/lib/aarch64-linux-gnu/libblas.so.3:
-
-/lib/aarch64-linux-gnu/libtbb.so.12:
-
-/usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.10.0:
-
-/usr/lib/aarch64-linux-gnu/libopencv_flann.so.4.10.0:
-
-/lib/aarch64-linux-gnu/libGLdispatch.so.0:
-
-/lib/aarch64-linux-gnu/libGL.so.1:
-
-/lib/aarch64-linux-gnu/libpng16.so.16:
-
-/lib/aarch64-linux-gnu/libharfbuzz.so.0:
-
-/lib/aarch64-linux-gnu/libmd4c.so.0:
-
-/lib/aarch64-linux-gnu/libdouble-conversion.so.3:
-
-/lib/aarch64-linux-gnu/libicui18n.so.76:
-
-/lib/aarch64-linux-gnu/libicuuc.so.76:
-
-/lib/aarch64-linux-gnu/libpcre2-16.so.0:
-
-/lib/aarch64-linux-gnu/libzstd.so.1:
-
 /lib/aarch64-linux-gnu/libjpeg.so.62:
 
 /lib/aarch64-linux-gnu/libwebp.so.7:
+
+/lib/aarch64-linux-gnu/libpng16.so.16:
 
 /lib/aarch64-linux-gnu/libgdcmMSFF.so.3.0:
 
@@ -516,6 +478,18 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 /lib/aarch64-linux-gnu/libgdal.so.36:
 
 /lib/aarch64-linux-gnu/libgdcmDSED.so.3.0:
+
+/lib/aarch64-linux-gnu/libz.so.1:
+
+/lib/aarch64-linux-gnu/libGLX.so.0:
+
+/lib/aarch64-linux-gnu/liblapack.so.3:
+
+/lib/aarch64-linux-gnu/libblas.so.3:
+
+/lib/aarch64-linux-gnu/libtbb.so.12:
+
+/usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.10.0:
 
 /lib/aarch64-linux-gnu/libraw1394.so.11:
 
@@ -637,16 +611,6 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /lib/aarch64-linux-gnu/libexif.so.12:
 
-/lib/aarch64-linux-gnu/libopenblas.so.0:
-
-/lib/aarch64-linux-gnu/libgfortran.so.5:
-
-/lib/aarch64-linux-gnu/libfreetype.so.6:
-
-/lib/aarch64-linux-gnu/libgraphite2.so.3:
-
-/lib/aarch64-linux-gnu/libicudata.so.76:
-
 /lib/aarch64-linux-gnu/libsharpyuv.so.0:
 
 /lib/aarch64-linux-gnu/libgdcmDICT.so.3.0:
@@ -666,6 +630,8 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 /lib/aarch64-linux-gnu/libgdcmIOD.so.3.0:
 
 /lib/aarch64-linux-gnu/libgdcmCommon.so.3.0:
+
+/lib/aarch64-linux-gnu/libzstd.so.1:
 
 /lib/aarch64-linux-gnu/libLerc.so.4:
 
@@ -745,6 +711,12 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /lib/aarch64-linux-gnu/libmfhdfalt.so.0:
 
+/lib/aarch64-linux-gnu/libGLdispatch.so.0:
+
+/lib/aarch64-linux-gnu/libopenblas.so.0:
+
+/lib/aarch64-linux-gnu/libgfortran.so.5:
+
 /lib/aarch64-linux-gnu/libsoxr.so.0:
 
 /lib/aarch64-linux-gnu/libgio-2.0.so.0:
@@ -766,6 +738,8 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 /lib/aarch64-linux-gnu/libpango-1.0.so.0:
 
 /lib/aarch64-linux-gnu/libfontconfig.so.1:
+
+/lib/aarch64-linux-gnu/libfreetype.so.6:
 
 /lib/aarch64-linux-gnu/libXext.so.6:
 
@@ -859,6 +833,8 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /lib/aarch64-linux-gnu/libarpack.so.2:
 
+/lib/aarch64-linux-gnu/libicuuc.so.76:
+
 /lib/aarch64-linux-gnu/libyuv.so.0:
 
 /lib/aarch64-linux-gnu/libgav1.so.1:
@@ -903,6 +879,8 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /lib/aarch64-linux-gnu/libpangoft2-1.0.so.0:
 
+/lib/aarch64-linux-gnu/libharfbuzz.so.0:
+
 /lib/aarch64-linux-gnu/libfribidi.so.0:
 
 /lib/aarch64-linux-gnu/libthai.so.0:
@@ -925,6 +903,8 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 
 /lib/aarch64-linux-gnu/libsasl2.so.2:
 
+/lib/aarch64-linux-gnu/libicudata.so.76:
+
 /lib/aarch64-linux-gnu/libabsl_synchronization.so.20240722:
 
 /lib/aarch64-linux-gnu/libgpgme.so.11:
@@ -934,6 +914,8 @@ CMakeFiles/vision_server.dir/src/main.cpp.o:
 /lib/aarch64-linux-gnu/libplds4.so:
 
 /lib/aarch64-linux-gnu/libblkid.so.1:
+
+/lib/aarch64-linux-gnu/libgraphite2.so.3:
 
 /lib/aarch64-linux-gnu/libdatrie.so.1:
 

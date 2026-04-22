@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/medpal/MedPalRobotV2/cpp
+CMAKE_SOURCE_DIR = /home/medpal/Desktop/cpp_robot/rebot/cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/medpal/MedPalRobotV2/cpp/build
+CMAKE_BINARY_DIR = /home/medpal/Desktop/cpp_robot/rebot/cpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/medpal/MedPalRobotV2/cpp/build/CMakeFiles /home/medpal/MedPalRobotV2/cpp/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles /home/medpal/Desktop/cpp_robot/rebot/cpp/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/medpal/MedPalRobotV2/cpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -174,29 +174,77 @@ vision_server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/build
 .PHONY : vision_server/fast
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+src/depth_processor.o: src/depth_processor.cpp.o
+.PHONY : src/depth_processor.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/depth_processor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/depth_processor.cpp.o
+.PHONY : src/depth_processor.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/depth_processor.i: src/depth_processor.cpp.i
+.PHONY : src/depth_processor.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/depth_processor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/depth_processor.cpp.i
+.PHONY : src/depth_processor.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/depth_processor.s: src/depth_processor.cpp.s
+.PHONY : src/depth_processor.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/depth_processor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/depth_processor.cpp.s
+.PHONY : src/depth_processor.cpp.s
+
+src/main_new.o: src/main_new.cpp.o
+.PHONY : src/main_new.o
+
+# target to build an object file
+src/main_new.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/main_new.cpp.o
+.PHONY : src/main_new.cpp.o
+
+src/main_new.i: src/main_new.cpp.i
+.PHONY : src/main_new.i
+
+# target to preprocess a source file
+src/main_new.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/main_new.cpp.i
+.PHONY : src/main_new.cpp.i
+
+src/main_new.s: src/main_new.cpp.s
+.PHONY : src/main_new.s
+
+# target to generate assembly for a file
+src/main_new.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/main_new.cpp.s
+.PHONY : src/main_new.cpp.s
+
+src/vision_engine.o: src/vision_engine.cpp.o
+.PHONY : src/vision_engine.o
+
+# target to build an object file
+src/vision_engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/vision_engine.cpp.o
+.PHONY : src/vision_engine.cpp.o
+
+src/vision_engine.i: src/vision_engine.cpp.i
+.PHONY : src/vision_engine.i
+
+# target to preprocess a source file
+src/vision_engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/vision_engine.cpp.i
+.PHONY : src/vision_engine.cpp.i
+
+src/vision_engine.s: src/vision_engine.cpp.s
+.PHONY : src/vision_engine.s
+
+# target to generate assembly for a file
+src/vision_engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision_server.dir/build.make CMakeFiles/vision_server.dir/src/vision_engine.cpp.s
+.PHONY : src/vision_engine.cpp.s
 
 # Help Target
 help:
@@ -211,9 +259,15 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... vision_server"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/depth_processor.o"
+	@echo "... src/depth_processor.i"
+	@echo "... src/depth_processor.s"
+	@echo "... src/main_new.o"
+	@echo "... src/main_new.i"
+	@echo "... src/main_new.s"
+	@echo "... src/vision_engine.o"
+	@echo "... src/vision_engine.i"
+	@echo "... src/vision_engine.s"
 .PHONY : help
 
 

@@ -39,20 +39,25 @@ endif()
 
 # Main executable
 add_executable(vision_server
-    src/main.cpp
+    src/main_new.cpp
+    src/vision_engine.cpp
+    src/depth_processor.cpp
 )
 
+target_include_directories(vision_server PRIVATE include /home/medpal/pyorbbecsdk/sdk/include)
+
 target_link_libraries(vision_server
-    opencv_core opencv_imgproc opencv_dnn opencv_objdetect opencv_highgui opencv_videoio
+    ${OpenCV_LIBS}
+    /home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so
     pthread
 )
 
-# Link Orbbec if available
-if(EXISTS ${OB_SDK_DIR}/lib/arm64/libObsensorSDK.so)
-    target_link_libraries(vision_server ObsensorSDK)
-elseif(EXISTS ${OB_SDK_DIR}/lib/arm64/libobsensor.so)
-    target_link_libraries(vision_server obsensor)
-endif()
+# Link Orbbec manually
+target_link_libraries(vision_server
+    ${OpenCV_LIBS}
+    /home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so
+    pthread
+)
 
 # Link Coral if available
 if(EDGETPU_LIB)

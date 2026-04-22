@@ -16,8 +16,12 @@ logging.basicConfig(
 )
 log = logging.getLogger("main")
 
-# Add python path
-sys.path.insert(0, '/home/medpal/MedPalRobotV2/python')
+# Add python path - use relative path based on script location
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(script_dir)
+sys.path.insert(0, script_dir)
+sys.path.insert(0, parent_dir)
 
 import motor_control as motors
 import vision_server_standalone

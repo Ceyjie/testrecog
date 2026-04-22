@@ -1,0 +1,31 @@
+# MedPal Vision Server - ArcFace Setup Guide
+
+Follow these steps to download the ArcFace model and prepare it for the C++ Vision Engine.
+
+### Step 1: Download the Model
+Run the following commands in your terminal to download and rename the ArcFace-style model from the OpenModelZoo repository:
+
+```bash
+# Navigate to the models directory
+cd /home/medpal/Desktop/cpp_robot/rebot/models/
+
+# Download the model (ResNet-100 face re-identification)
+wget https://storage.openvinotoolkit.org/repositories/open_model_zoo/2023.0/models_bin/1/face-reidentification-resnet-100/FP16/face-reidentification-resnet-100.onnx
+
+# Rename it for easier use in your C++ code
+mv face-reidentification-resnet-100.onnx arcface.onnx
+```
+
+### Step 2: Verify the Download
+Ensure the file downloaded correctly and is not 0 bytes:
+
+```bash
+ls -lh arcface.onnx
+```
+*Expected size should be several megabytes.*
+
+### Step 3: Inform the AI
+Once the file is verified and has a non-zero size, return to the chat and inform me. I will then provide the code to:
+1. Update `VisionEngine` to load `arcface.onnx`.
+2. Implement the embedding generation (converting faces to vectors).
+3. Implement Cosine Similarity comparison to identify "Carl" or other registered persons.

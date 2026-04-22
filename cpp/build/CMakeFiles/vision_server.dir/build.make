@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/medpal/MedPalRobotV2/cpp
+CMAKE_SOURCE_DIR = /home/medpal/Desktop/cpp_robot/rebot/cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/medpal/MedPalRobotV2/cpp/build
+CMAKE_BINARY_DIR = /home/medpal/Desktop/cpp_robot/rebot/cpp/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/vision_server.dir/depend.make
@@ -72,33 +72,67 @@ include CMakeFiles/vision_server.dir/flags.make
 CMakeFiles/vision_server.dir/codegen:
 .PHONY : CMakeFiles/vision_server.dir/codegen
 
-CMakeFiles/vision_server.dir/src/main.cpp.o: CMakeFiles/vision_server.dir/flags.make
-CMakeFiles/vision_server.dir/src/main.cpp.o: /home/medpal/MedPalRobotV2/cpp/src/main.cpp
-CMakeFiles/vision_server.dir/src/main.cpp.o: CMakeFiles/vision_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/medpal/MedPalRobotV2/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vision_server.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vision_server.dir/src/main.cpp.o -MF CMakeFiles/vision_server.dir/src/main.cpp.o.d -o CMakeFiles/vision_server.dir/src/main.cpp.o -c /home/medpal/MedPalRobotV2/cpp/src/main.cpp
+CMakeFiles/vision_server.dir/src/main_new.cpp.o: CMakeFiles/vision_server.dir/flags.make
+CMakeFiles/vision_server.dir/src/main_new.cpp.o: /home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp
+CMakeFiles/vision_server.dir/src/main_new.cpp.o: CMakeFiles/vision_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vision_server.dir/src/main_new.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vision_server.dir/src/main_new.cpp.o -MF CMakeFiles/vision_server.dir/src/main_new.cpp.o.d -o CMakeFiles/vision_server.dir/src/main_new.cpp.o -c /home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp
 
-CMakeFiles/vision_server.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vision_server.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/medpal/MedPalRobotV2/cpp/src/main.cpp > CMakeFiles/vision_server.dir/src/main.cpp.i
+CMakeFiles/vision_server.dir/src/main_new.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vision_server.dir/src/main_new.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp > CMakeFiles/vision_server.dir/src/main_new.cpp.i
 
-CMakeFiles/vision_server.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vision_server.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/medpal/MedPalRobotV2/cpp/src/main.cpp -o CMakeFiles/vision_server.dir/src/main.cpp.s
+CMakeFiles/vision_server.dir/src/main_new.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vision_server.dir/src/main_new.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp -o CMakeFiles/vision_server.dir/src/main_new.cpp.s
+
+CMakeFiles/vision_server.dir/src/vision_engine.cpp.o: CMakeFiles/vision_server.dir/flags.make
+CMakeFiles/vision_server.dir/src/vision_engine.cpp.o: /home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp
+CMakeFiles/vision_server.dir/src/vision_engine.cpp.o: CMakeFiles/vision_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/vision_server.dir/src/vision_engine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vision_server.dir/src/vision_engine.cpp.o -MF CMakeFiles/vision_server.dir/src/vision_engine.cpp.o.d -o CMakeFiles/vision_server.dir/src/vision_engine.cpp.o -c /home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp
+
+CMakeFiles/vision_server.dir/src/vision_engine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vision_server.dir/src/vision_engine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp > CMakeFiles/vision_server.dir/src/vision_engine.cpp.i
+
+CMakeFiles/vision_server.dir/src/vision_engine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vision_server.dir/src/vision_engine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp -o CMakeFiles/vision_server.dir/src/vision_engine.cpp.s
+
+CMakeFiles/vision_server.dir/src/depth_processor.cpp.o: CMakeFiles/vision_server.dir/flags.make
+CMakeFiles/vision_server.dir/src/depth_processor.cpp.o: /home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp
+CMakeFiles/vision_server.dir/src/depth_processor.cpp.o: CMakeFiles/vision_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/vision_server.dir/src/depth_processor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/vision_server.dir/src/depth_processor.cpp.o -MF CMakeFiles/vision_server.dir/src/depth_processor.cpp.o.d -o CMakeFiles/vision_server.dir/src/depth_processor.cpp.o -c /home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp
+
+CMakeFiles/vision_server.dir/src/depth_processor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/vision_server.dir/src/depth_processor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp > CMakeFiles/vision_server.dir/src/depth_processor.cpp.i
+
+CMakeFiles/vision_server.dir/src/depth_processor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/vision_server.dir/src/depth_processor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp -o CMakeFiles/vision_server.dir/src/depth_processor.cpp.s
 
 # Object files for target vision_server
 vision_server_OBJECTS = \
-"CMakeFiles/vision_server.dir/src/main.cpp.o"
+"CMakeFiles/vision_server.dir/src/main_new.cpp.o" \
+"CMakeFiles/vision_server.dir/src/vision_engine.cpp.o" \
+"CMakeFiles/vision_server.dir/src/depth_processor.cpp.o"
 
 # External object files for target vision_server
 vision_server_EXTERNAL_OBJECTS =
 
-vision_server: CMakeFiles/vision_server.dir/src/main.cpp.o
+vision_server: CMakeFiles/vision_server.dir/src/main_new.cpp.o
+vision_server: CMakeFiles/vision_server.dir/src/vision_engine.cpp.o
+vision_server: CMakeFiles/vision_server.dir/src/depth_processor.cpp.o
 vision_server: CMakeFiles/vision_server.dir/build.make
 vision_server: CMakeFiles/vision_server.dir/compiler_depend.ts
+vision_server: /home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_objdetect.so.4.10.0
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.10.0
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.10.0
+vision_server: /home/medpal/pyorbbecsdk/sdk/lib/arm64/libOrbbecSDK.so
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_dnn.so.4.10.0
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_calib3d.so.4.10.0
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_features2d.so.4.10.0
@@ -107,7 +141,7 @@ vision_server: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.10.0
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.10.0
 vision_server: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.10.0
 vision_server: CMakeFiles/vision_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/medpal/MedPalRobotV2/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable vision_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable vision_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/vision_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -119,6 +153,6 @@ CMakeFiles/vision_server.dir/clean:
 .PHONY : CMakeFiles/vision_server.dir/clean
 
 CMakeFiles/vision_server.dir/depend:
-	cd /home/medpal/MedPalRobotV2/cpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/medpal/MedPalRobotV2/cpp /home/medpal/MedPalRobotV2/cpp /home/medpal/MedPalRobotV2/cpp/build /home/medpal/MedPalRobotV2/cpp/build /home/medpal/MedPalRobotV2/cpp/build/CMakeFiles/vision_server.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/medpal/Desktop/cpp_robot/rebot/cpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/medpal/Desktop/cpp_robot/rebot/cpp /home/medpal/Desktop/cpp_robot/rebot/cpp /home/medpal/Desktop/cpp_robot/rebot/cpp/build /home/medpal/Desktop/cpp_robot/rebot/cpp/build /home/medpal/Desktop/cpp_robot/rebot/cpp/build/CMakeFiles/vision_server.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/vision_server.dir/depend
 

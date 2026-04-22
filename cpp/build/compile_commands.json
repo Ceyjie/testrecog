@@ -1,8 +1,20 @@
 [
 {
-  "directory": "/home/medpal/MedPalRobotV2/cpp/build",
-  "command": "/usr/bin/c++ -DHAVE_ORBBEC=1 -I/home/medpal/pyorbbecsdk/sdk/include -isystem /usr/include/opencv4 -O3 -DNDEBUG -std=gnu++17 -O3 -march=armv8-a+fp+simd+crc+crypto -mtune=cortex-a76 -ffast-math -flto -Wall -Wextra -o CMakeFiles/vision_server.dir/src/main.cpp.o -c /home/medpal/MedPalRobotV2/cpp/src/main.cpp",
-  "file": "/home/medpal/MedPalRobotV2/cpp/src/main.cpp",
-  "output": "CMakeFiles/vision_server.dir/src/main.cpp.o"
+  "directory": "/home/medpal/Desktop/cpp_robot/rebot/cpp/build",
+  "command": "/usr/bin/c++ -DHAVE_ORBBEC=1 -I/home/medpal/pyorbbecsdk/sdk/include -I/home/medpal/Desktop/cpp_robot/rebot/cpp/include -isystem /usr/include/opencv4 -O3 -DNDEBUG -std=gnu++17 -O3 -march=armv8-a+fp+simd+crc+crypto -mtune=cortex-a76 -ffast-math -flto -Wall -Wextra -o CMakeFiles/vision_server.dir/src/main_new.cpp.o -c /home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp",
+  "file": "/home/medpal/Desktop/cpp_robot/rebot/cpp/src/main_new.cpp",
+  "output": "CMakeFiles/vision_server.dir/src/main_new.cpp.o"
+},
+{
+  "directory": "/home/medpal/Desktop/cpp_robot/rebot/cpp/build",
+  "command": "/usr/bin/c++ -DHAVE_ORBBEC=1 -I/home/medpal/pyorbbecsdk/sdk/include -I/home/medpal/Desktop/cpp_robot/rebot/cpp/include -isystem /usr/include/opencv4 -O3 -DNDEBUG -std=gnu++17 -O3 -march=armv8-a+fp+simd+crc+crypto -mtune=cortex-a76 -ffast-math -flto -Wall -Wextra -o CMakeFiles/vision_server.dir/src/vision_engine.cpp.o -c /home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp",
+  "file": "/home/medpal/Desktop/cpp_robot/rebot/cpp/src/vision_engine.cpp",
+  "output": "CMakeFiles/vision_server.dir/src/vision_engine.cpp.o"
+},
+{
+  "directory": "/home/medpal/Desktop/cpp_robot/rebot/cpp/build",
+  "command": "/usr/bin/c++ -DHAVE_ORBBEC=1 -I/home/medpal/pyorbbecsdk/sdk/include -I/home/medpal/Desktop/cpp_robot/rebot/cpp/include -isystem /usr/include/opencv4 -O3 -DNDEBUG -std=gnu++17 -O3 -march=armv8-a+fp+simd+crc+crypto -mtune=cortex-a76 -ffast-math -flto -Wall -Wextra -o CMakeFiles/vision_server.dir/src/depth_processor.cpp.o -c /home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp",
+  "file": "/home/medpal/Desktop/cpp_robot/rebot/cpp/src/depth_processor.cpp",
+  "output": "CMakeFiles/vision_server.dir/src/depth_processor.cpp.o"
 }
 ]
